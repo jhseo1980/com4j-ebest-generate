@@ -109,6 +109,7 @@
 				</configuration>
 				<executions>
 					<execution>
+						<id>resource-compile</id>
 						<phase>generate-resources</phase>
 						<goals>
 							<goal>compile</goal>
@@ -122,6 +123,7 @@
 				<!-- <version>2.6</version> -->
 				<executions>
 					<execution>
+						<id>jar-package</id>
 						<phase>package</phase>
 						<goals>
 							<goal>jar</goal>
