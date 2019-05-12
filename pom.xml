@@ -1,0 +1,173 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.adonai.tools</groupId>
+	<artifactId>com4j-ebest-generate</artifactId>
+	<version>6.3.0.0</version>
+	<packaging>pom</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<com4j.outputDirectory>${basedir}/src/main/java</com4j.outputDirectory>
+		<!-- 버전조심할것 install을 하더라도 artifactid를 못찾는 경우가 있다. -->
+		<maven.install.version>2.5.2</maven.install.version>
+	</properties>
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+
+			<!-- 테스트스킵 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+<!-- 				<version>2.22.1</version> -->
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+<!-- 				<version>3.1.0</version> -->
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${com4j.outputDirectory}/dataset</directory>
+						</fileset>
+						<fileset>
+							<directory>${com4j.outputDirectory}/session</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+				<executions>
+					<execution>
+						<!-- 아이디는 execution 의 유니크로 생성 -->
+						<id>auto-clean</id>
+						<!-- 생명주기위치 -->
+						<phase>initialize</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- com4j 소스생성 -->
+			<plugin>
+				<groupId>org.jvnet.com4j</groupId>
+				<artifactId>maven-com4j-plugin</artifactId>
+<!-- 				<version>2.1</version> -->
+				<executions>
+					<execution>
+						<id>XA_Session</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>gen</goal>
+						</goals>
+						<configuration>
+							<file>C:/eBEST/xingAPI/XA_Session.dll</file>
+							<package>session</package>
+							<outputDirectory>${com4j.outputDirectory}</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<phase>generate-sources</phase>
+						<id>XA_DataSet</id>
+						<goals>
+							<goal>gen</goal>
+						</goals>
+						<configuration>
+							<file>C:/eBEST/xingAPI/XA_DataSet.dll</file>
+							<package>dataset</package>
+							<outputDirectory>${com4j.outputDirectory}</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+<!-- 				<version>3.8.0</version> -->
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+<!-- 				<version>2.6</version> -->
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+<!-- 				<version>${maven.install.version}</version> -->
+				<executions>
+					<execution>
+						<configuration>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>${project.artifactId}</artifactId>
+							<version>${project.version}</version>
+							<packaging>jar</packaging>
+							<file>${project.build.directory}/${project.name}-${project.version}.jar</file>
+							<generatePom>true</generatePom>
+						</configuration>
+						<id>${project.artifactId}</id>
+						<phase>install</phase>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-verifier-plugin</artifactId>
+<!-- 				<version>1.1</version> -->
+				<configuration>
+					<verificationFile>input-resources/verifications.xml</verificationFile>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+	<dependencies>
+		<!-- <dependency> -->
+		<!-- <groupId>junit</groupId> -->
+		<!-- <artifactId>junit</artifactId> -->
+		<!-- <version>3.8.1</version> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.jvnet.com4j</groupId>
+			<artifactId>com4j</artifactId>
+			<version>2.1</version>
+		</dependency>
+	</dependencies>
+</project>
