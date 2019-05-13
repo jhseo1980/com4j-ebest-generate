@@ -168,31 +168,9 @@
 			<!-- </executions> -->
 			<!-- </plugin> -->
 
-			<!-- <plugin> -->
-			<!-- <artifactId>maven-verifier-plugin</artifactId> -->
-			<!-- <version>1.1</version> -->
-			<!-- <configuration> -->
-			<!-- <verificationFile>input-resources/verifications.xml</verificationFile> -->
-			<!-- </configuration> -->
-			<!-- <executions> -->
-			<!-- <execution> -->
-			<!-- <phase>verify</phase> -->
-			<!-- <goals> -->
-			<!-- <goal>verify</goal> -->
-			<!-- </goals> -->
-			<!-- </execution> -->
-			<!-- </executions> -->
-			<!-- </plugin> -->
-
 		</plugins>
 	</build>
 	<dependencies>
-		<!-- <dependency> -->
-		<!-- <groupId>junit</groupId> -->
-		<!-- <artifactId>junit</artifactId> -->
-		<!-- <version>3.8.1</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.jvnet.com4j</groupId>
 			<artifactId>com4j</artifactId>
