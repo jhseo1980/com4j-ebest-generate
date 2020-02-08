@@ -5,13 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.adonai.tools</groupId>
 	<artifactId>com4j-ebest-generate</artifactId>
-	<version>7.1.0.0</version>
+	<version>8.0.0.1</version>
 	<packaging>pom</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<com4j.outputDirectory>${basedir}/src/main/java</com4j.outputDirectory>
-		<!-- 버전조심할것 install을 하더라도 artifactid를 못찾는 경우가 있다. -->
-		<maven.install.version>2.5.2</maven.install.version>
 	</properties>
 	<build>
 		<defaultGoal>clean install</defaultGoal>
@@ -35,7 +33,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<!-- <version>2.22.1</version> -->
+				<version>3.0.0-M4</version>
 				<configuration>
 					<skipTests>true</skipTests>
 				</configuration>
@@ -43,18 +41,18 @@
 
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
-				<!-- <version>3.1.0</version> -->
+				<version>3.1.0</version>
 				<configuration>
 					<filesets>
 						<fileset>
 							<directory>${com4j.outputDirectory}</directory>
 						</fileset>
-<!-- 						<fileset> -->
-<!-- 							<directory>${com4j.outputDirectory}/session</directory> -->
-<!-- 						</fileset> -->
-<!-- 						<fileset> -->
-<!-- 							<directory>${com4j.outputDirectory}/session</directory> -->
-<!-- 						</fileset> -->
+						<!-- <fileset> -->
+						<!-- <directory>${com4j.outputDirectory}/session</directory> -->
+						<!-- </fileset> -->
+						<!-- <fileset> -->
+						<!-- <directory>${com4j.outputDirectory}/session</directory> -->
+						<!-- </fileset> -->
 					</filesets>
 				</configuration>
 				<executions>
@@ -70,7 +68,7 @@
 			<plugin>
 				<groupId>org.jvnet.com4j</groupId>
 				<artifactId>maven-com4j-plugin</artifactId>
-				<!-- <version>2.1</version> -->
+				<version>2.1</version>
 				<executions>
 					<execution>
 						<!-- <phase>generate-sources</phase> -->
@@ -101,6 +99,7 @@
 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -117,6 +116,7 @@
 
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
 				<executions>
 					<execution>
 						<!-- <phase>package</phase> -->
@@ -129,7 +129,8 @@
 
 			<plugin>
 				<artifactId>maven-install-plugin</artifactId>
-				<!-- <version>${maven.install.version}</version> -->
+				<!-- 버전조심할것 install을 하더라도 artifactid를 못찾는 경우가 있다. -->
+				<version>3.0.0-M1</version>
 				<executions>
 					<execution>
 						<configuration>
