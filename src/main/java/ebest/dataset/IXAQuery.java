@@ -576,5 +576,30 @@ public interface IXAQuery extends Com4jObject {
     java.lang.String szFieldName);
 
 
+  /**
+   * <p>
+   * method SetProgramOrder
+   * </p>
+   * @param bProgramOrder Mandatory boolean parameter.
+   */
+
+  @DISPID(53) //= 0x35. The runtime will prefer the VTID if present
+  @VTID(45)
+  void setProgramOrder(
+    boolean bProgramOrder);
+
+
+  /**
+   * <p>
+   * method GetProgramOrder
+   * </p>
+   * @return  Returns a value of type boolean
+   */
+
+  @DISPID(54) //= 0x36. The runtime will prefer the VTID if present
+  @VTID(46)
+  boolean getProgramOrder();
+
+
   // Properties:
 }
